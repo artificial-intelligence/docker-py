@@ -118,6 +118,9 @@ class BuildTest(BaseAPIClientTest):
     def test_build_container_with_named_dockerfile(self):
         self.client.build(".", dockerfile="nameddockerfile")
 
+    def test_build_with_ports_on_tag(self):
+        self.client.build(".", tag="registry.example.com:443/my-img:latest")
+
     def test_build_with_invalid_tag(self):
         with pytest.raises(errors.DockerException):
             self.client.build(".", tag="https://example.com")
